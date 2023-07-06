@@ -1,0 +1,45 @@
+.movie-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .movie-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .movie-card {
+    margin-bottom: 20px;
+  }
+  
+  @media screen and (min-width: 600px) {
+    .movie-form {
+      flex-direction: row;
+    }
+  
+    .movie-form mat-form-field {
+      flex: 1;
+      margin-right: 20px;
+    }
+  }
+
+  h1 {
+    font-family: 'Arial', sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin: 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  :host {
+    display: block;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+  
+  

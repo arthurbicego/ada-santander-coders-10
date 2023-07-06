@@ -1,0 +1,46 @@
+<div>
+    <h1>Movie Catalog</h1>
+  
+    <form class="movie-form" (submit)="addMovie(nameInput.value, synopsisInput.value)">
+      <mat-form-field appearance="fill">
+        <mat-label>Title:</mat-label>
+        <input matInput id="nameInput" type="text" #nameInput>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Synopsis:</mat-label>
+        <textarea matInput id="synopsisInput" #synopsisInput></textarea>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">Add Movie</button>
+    </form>
+  
+    <ul class="movie-list">
+      <li *ngFor="let movie of movies">
+        <mat-card class="movie-card">
+          <mat-card-header>
+            <mat-card-title>{{ movie.title }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ movie.synopsis }}</p>
+            <p *ngIf="movie.comment">Comment: {{ movie.comment }}</p>
+            <div>
+              <mat-checkbox [(ngModel)]="movie.watched" (change)="updateWatched(movie)">Watched</mat-checkbox>
+              <mat-checkbox *ngIf="movie.watched" [(ngModel)]="movie.liked">Liked</mat-checkbox>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="warn" (click)="removeMovie(movie)">Remove</button>
+            <button *ngIf="movie.watched" mat-button color="primary" (click)="showCommentForm(movie)">Comment</button>
+            <form *ngIf="movie === selectedMovie" (submit)="saveComment(commentInput.value)">
+                <mat-form-field appearance="fill">
+                  <textarea matInput #commentInput [(ngModel)]="selectedMovie.comment" placeholder="Add your comment"></textarea>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit">Save</button>
+              </form>
+            </mat-card-actions>
+          </mat-card>
+        </li>
+      </ul>
+    </div>
+ 
